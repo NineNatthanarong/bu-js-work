@@ -6,30 +6,40 @@
 </head>
 
 <body>
-    <h1>Hello, JavaScript! <button onclick="showMessage()">Click Me</button></h1>
-
-    <ul>
-        <!-- this is comment in html -->
-        <li>
-            <a href="contents/js_functions.html">Functions</a>
-        </li>
-        <li>
-            <a href="contents/js_objects.html">Objects</a>
-        </li>
-        <li>
-            <a href="contents/js_dom.html">DOM and how to manipulate them</a>
-        </li>
-        <li>
-            <a href="contents/js_exercise.html">Exercise</a>
-        </li>
-        <li>
-            <a href="contents/js_assignment.html">Assignment</a>
-        </li>
-    </ul>
+    <button onclick="showMessage()">Click Me</button>
 
     <script>
-        function showMessage() {
-            alert("Hello! You just clicked the button.");
+        
+        function showMessage() {    
+            var input = prompt("Input integer number");
+            if (input === null) {
+                alert("No input provided.");
+                return;
+            }
+            input = input.trim();
+
+            if (input === "") {
+                alert("No input provided.");
+                return;
+            }
+
+            var num = Number(input);
+
+            if (!Number.isFinite(num) || !Number.isInteger(num)) {
+                alert("Please enter a valid integer number.");
+                return;
+            }
+            
+            if (num === 0) {
+                alert("zero integer number");
+                return;
+            }
+
+            if (num % 2 === 0) {
+                alert("even integer number");
+            } else {
+                alert("odd integer number");
+            }
         }
     </script>
 </body>
