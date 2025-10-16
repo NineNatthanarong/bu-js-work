@@ -2,46 +2,71 @@
 <html>
 
 <head>
-    <title>Simple HTML with JS</title>
+    <meta>
+    <title>WebJS</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 400px;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body>
-    <button onclick="showMessage()">Click Me</button>
+    <input type="text" id="firstName" placeholder="Enter first name">
+    <input type="text" id="lastName" placeholder="Enter last name">
+    <button onclick="addRecord()">Add</button>
+    <button onclick="resetInput()">Reset Input</button>
+    <button onclick="resetTable()">Reset Table</button>
+
+    <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
 
     <script>
-        
-        function showMessage() {    
-            var input = prompt("Input integer number");
-            if (input === null) {
-                alert("No input provided.");
-                return;
-            }
-            input = input.trim();
+        function addRecord() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
 
-            if (input === "") {
-                alert("No input provided.");
-                return;
-            }
+            const tableBody = document.getElementById('tableBody');
+            const newRow = tableBody.insertRow();
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
 
-            var num = Number(input);
+            cell1.textContent = firstName;
+            cell2.textContent = lastName;
+        }
 
-            if (!Number.isFinite(num) || !Number.isInteger(num)) {
-                alert("Please enter a valid integer number.");
-                return;
-            }
-            
-            if (num === 0) {
-                alert("zero integer number");
-                return;
-            }
+        function resetInput() {
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+        }
 
-            if (num % 2 === 0) {
-                alert("even integer number");
-            } else {
-                alert("odd integer number");
-            }
+        function resetTable() {
+            document.getElementById('tableBody').innerHTML = '';
         }
     </script>
+
 </body>
 
 </html>
